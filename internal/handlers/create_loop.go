@@ -16,13 +16,14 @@ package handlers
 import (
 	"context"
 	"encoding/json"
+	"sync"
+	"time"
+
 	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
 	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
 	"github.com/project-alvarium/example-go/internal/models"
 	logInterface "github.com/project-alvarium/provider-logging/pkg/interfaces"
 	"github.com/project-alvarium/provider-logging/pkg/logging"
-	"sync"
-	"time"
 )
 
 type CreateLoop struct {
@@ -57,7 +58,7 @@ func (c *CreateLoop) BootstrapHandler(ctx context.Context, wg *sync.WaitGroup) b
 
 			c.sdk.Create(context.Background(), b)
 			c.chPublish <- b
-			time.Sleep(1 * time.Second)
+			time.Sleep(8 * time.Second)
 		}
 		close(c.chPublish)
 		c.logger.Write(logging.DebugLevel, "cancel received")

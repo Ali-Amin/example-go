@@ -15,19 +15,13 @@
       }
     },
     "stream": {
-      "type": "iota",
+      "type": "hedera",
       "config": {
-        "provider": {
-          "host": "100.80.245.205",
-          "protocol": "http",
-          "port": 8080
-        },
-        "tangle": {
-          "host": "100.80.245.118",
-          "protocol": "http",
-          "port": 8080
-        },
-        "encoding": "utf-8"
+        "netType": "testnet",
+        "contractId": "0.0.47837516",
+        "accountId": "0.0.47825093",
+        "privateKey": "302e020100300506032b6570042204203e387cb8c03e45e6b8080505e705cdf7ccd9b48a82a57e462f0d1c4283cee76a",
+        "topics": ["0.0.47836106"]
       }
     }
   },

@@ -6,3 +6,6 @@ require (
 )
 
 go 1.16
+
+
+replace github.com/project-alvarium/alvarium-sdk-go => github.com/Ali-Amin/alvarium-sdk-go v0.0.0-20220829094935-cdd96caf5141
