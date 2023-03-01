@@ -17,7 +17,7 @@ import (
 	"crypto/ed25519"
 	"encoding/hex"
 	"fmt"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
 	"io/ioutil"
 	"math/rand"
 	"time"

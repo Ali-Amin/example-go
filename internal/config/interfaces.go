@@ -13,7 +13,7 @@
  *******************************************************************************/
 package config
 
-import "github.com/project-alvarium/alvarium-sdk-go/pkg/config"
+import "github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
 
 type Reader interface {
 	Read(filePath string, cfg config.Configuration) error

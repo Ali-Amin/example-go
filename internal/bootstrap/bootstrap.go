@@ -18,7 +18,7 @@ package bootstrap
 
 import (
 	"context"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
 	"os"
 	"os/signal"
 	"sync"

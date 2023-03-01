@@ -16,9 +16,9 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/factories"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/factories"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 	"github.com/project-alvarium/example-go/internal/bootstrap"
 	"github.com/project-alvarium/example-go/internal/config"
 	"github.com/project-alvarium/example-go/internal/handlers"

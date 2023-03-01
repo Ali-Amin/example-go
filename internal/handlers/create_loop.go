@@ -16,13 +16,16 @@ package handlers
 import (
 	"context"
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
+	"os"
+	"sync"
+	"time"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 	"github.com/project-alvarium/example-go/internal/models"
 	logInterface "github.com/project-alvarium/provider-logging/pkg/interfaces"
 	"github.com/project-alvarium/provider-logging/pkg/logging"
-	"sync"
-	"time"
 )
 
 type CreateLoop struct {
@@ -55,7 +58,8 @@ func (c *CreateLoop) BootstrapHandler(ctx context.Context, wg *sync.WaitGroup) b
 			}
 			b, _ := json.Marshal(data)
 
-			c.sdk.Create(context.Background(), b)
+			deviceId := os.Getenv("DEVICEID")
+			c.sdk.Create(context.WithValue(context.Background(), contracts.DeviceIdKey, deviceId), b)
 			c.chPublish <- b
 			time.Sleep(1 * time.Second)
 		}

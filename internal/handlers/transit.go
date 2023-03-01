@@ -15,11 +15,14 @@ package handlers
 
 import (
 	"context"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
+	"os"
+	"sync"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 	logInterface "github.com/project-alvarium/provider-logging/pkg/interfaces"
 	"github.com/project-alvarium/provider-logging/pkg/logging"
-	"sync"
 )
 
 type Transit struct {
@@ -46,7 +49,8 @@ func (t *Transit) BootstrapHandler(ctx context.Context, wg *sync.WaitGroup) bool
 		for {
 			msg, ok := <-t.chSubscribe
 			if ok {
-				t.sdk.Transit(ctx, msg)
+				deviceId := os.Getenv("DEVICEID")
+				t.sdk.Transit(context.WithValue(context.Background(), contracts.DeviceIdKey, deviceId), msg)
 			} else { //channel has been closed. End goroutine.
 				t.logger.Write(logging.InfoLevel, "transit::chSubscribe closed, exiting")
 				return

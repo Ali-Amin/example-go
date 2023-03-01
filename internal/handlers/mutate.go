@@ -16,12 +16,15 @@ package handlers
 import (
 	"context"
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/interfaces"
+	"os"
+	"sync"
+
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/contracts"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/interfaces"
 	"github.com/project-alvarium/example-go/internal/models"
 	logInterface "github.com/project-alvarium/provider-logging/pkg/interfaces"
 	"github.com/project-alvarium/provider-logging/pkg/logging"
-	"sync"
 )
 
 type Mutator struct {
@@ -56,8 +59,8 @@ func (m *Mutator) BootstrapHandler(ctx context.Context, wg *sync.WaitGroup) bool
 					continue
 				}
 				b, _ := json.Marshal(data)
-
-				m.sdk.Mutate(ctx, msg, b)
+				deviceId := os.Getenv("DEVICEID")
+				m.sdk.Mutate(context.WithValue(context.Background(), contracts.DeviceIdKey, deviceId), msg, b)
 				m.chPublish <- b
 			} else { //channel has been closed. End goroutine.
 				m.logger.Write(logging.InfoLevel, "mutator::chSubscribe closed, exiting")

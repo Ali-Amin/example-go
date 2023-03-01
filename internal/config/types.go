@@ -15,7 +15,7 @@ package config
 
 import (
 	"encoding/json"
-	"github.com/project-alvarium/alvarium-sdk-go/pkg/config"
+	"github.com/KarimElghamry/alvarium-sdk-go/pkg/config"
 	logging "github.com/project-alvarium/provider-logging/pkg/config"
 )
 
